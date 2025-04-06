@@ -1,0 +1,202 @@
+/* Navigation Bar Styles */
+nav {
+    width: 100%;
+    background-color: #f8f9fa; /* Light background for the nav */
+    display: flex;
+    justify-content: center; /* Center the links horizontally */
+    padding: 10px 0;
+    position: fixed; /* Fix the nav below the header */
+    top: 60px; /* Adjust this value based on the header height */
+    left: 0;
+    z-index: 999; /* Ensure it stays above other elements */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 16px;
+    margin: 0 15px; /* Add spacing between links */
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Home Page Styles */
+.home-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.home-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* General Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+/* Header Styles */
+header {
+    width: 100%;
+    background-color: #007bff; /* Blue background */
+    color: #fff; /* White text */
+    text-align: center;
+    padding: 20px 0;
+    position: fixed; /* Fix the header at the top */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure it stays above other elements */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Container Styles for Login and Signup Pages */
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+    margin: 140px auto 40px;
+}
+
+.container h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Form Styles */
+.container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.container form input {
+    margin-bottom: 15px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.container form button {
+    padding: 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.container form button:hover {
+    background-color: #0056b3;
+}
+
+/* Link Styles */
+.container .link {
+    margin-top: 15px;
+}
+
+.container .link a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.container .link a:hover {
+    text-decoration: underline;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    .home-container {
+        width: 95%;
+    }
+}
+
+/* User Info Styles */
+.user-info {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.user-info h2 {
+    margin: 0 0 10px;
+    color: #333;
+}
+
+.user-info p {
+    margin: 5px 0;
+    color: #555;
+}
+
+/* General Styles */
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #007bff;
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}

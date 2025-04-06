@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Signup - Online Retail Application</title>
+</head>
+<body>
+    <div>
+        <header>
+            <h1>Welcome to the Online Retail Application</h1>
+        </header>
+    </div>
+    <div class="container">
+        <h2>Create an Account</h2>
+        <form id="signupForm">
+            <input type="text" id="firstName" placeholder="First Name" required>
+            <input type="text" id="middleName" placeholder="Middle Name" required>
+            <input type="text" id="lastName" placeholder="Last Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="text" id="phone" placeholder="Phone Number" required>
+            <select id="sex" required>
+                <option value="" disabled selected>Sex</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="date" id="dob" placeholder="Date of Birth" required>
+            <input type="text" id="address" placeholder="Address" required>
+            <input type="text" id="postalCode" placeholder="Postal Code" required>
+            <input type="text" id="city" placeholder="City" required>
+            <input type="text" id="state" placeholder="State" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        <div class="link">
+            <a href="login.html">Already have an account? Login</a>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
