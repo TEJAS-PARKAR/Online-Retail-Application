@@ -49,13 +49,13 @@ app.post('/signup', (req, res) => {
 });
 
 //Login endpoint
-app.post('/login', async (req, res) => {
+app.post('/login', (req, res) => {
     const { email, password } = req.body;
 
     console.log('Login attempt with email:', email); // Debugging
 
     const query = 'SELECT * FROM customers WHERE Email = ?';
-    db.query(query, [email], async (err, results) => {
+    db.query(query, [email], (err, results) => {
         if (err) {
             console.error('Error fetching user:', err);
             return res.status(500).json({ message: 'Error logging in' });
@@ -69,8 +69,8 @@ app.post('/login', async (req, res) => {
         const user = results[0];
         console.log('User found:', user); // Debugging
 
-        const isPasswordValid = await bcrypt.compare(password, user.Password);
-        if (!isPasswordValid) {
+        // Compare plain text passwords
+        if (password !== user.Password) {
             console.log('Password mismatch'); // Debugging
             return res.status(401).json({ message: 'Invalid email or password' });
         }
@@ -78,6 +78,7 @@ app.post('/login', async (req, res) => {
         res.status(200).json({
             message: 'Login successful',
             user: {
+                id: user.User_ID,
                 firstName: user.FName,
                 middleName: user.MName,
                 lastName: user.LName,
@@ -121,3 +122,94 @@ app.get('/products', (req, res) => {
         res.status(200).json(results);
     });
 });
+
+// Endpoint to add a new product
+app.post('/products', (req, res) => {
+    const { name, description, price, stock, category, brand, sku, discount } = req.body;
+
+    const query = `
+        INSERT INTO products (ProductName, Description, Price, Instock, Category, Brand, SKU_Code, Discount)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+    const values = [name, description, price, stock, category, brand, sku, discount];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Error adding product:', err);
+            return res.status(500).json({ message: 'Error adding product' });
+        }
+        res.status(201).json({ message: 'Product added successfully' });
+    });
+});
+
+// Endpoint to fetch reviews for a specific product
+app.get('/products/:id/reviews', (req, res) => {
+    const productId = req.params.id;
+
+    const query = `
+        SELECT r.Review_ID, r.User_ID, r.Rating, r.Comment, r.Review_Date, c.FName AS Reviewer_Name
+        FROM reviews r
+        JOIN customers c ON r.User_ID = c.User_ID
+        WHERE r.Product_ID = ?
+    `;
+    db.query(query, [productId], (err, results) => {
+        if (err) {
+            console.error('Error fetching reviews:', err);
+            return res.status(500).json({ message: 'Error fetching reviews' });
+        }
+        res.status(200).json(results);
+    });
+});
+
+app.get('/user/:id/reviews', (req, res) => {
+    const userId = req.params.id;
+
+    const query = `
+        SELECT r.Review_ID, r.Product_ID, r.Rating, r.Comment, r.Review_Date, p.ProductName
+        FROM reviews r
+        JOIN products p ON r.Product_ID = p.Product_ID
+        WHERE r.User_ID = ?
+    `;
+    db.query(query, [userId], (err, results) => {
+        if (err) {
+            console.error('Error fetching user reviews:', err);
+            return res.status(500).json({ message: 'Error fetching user reviews' });
+        }
+        res.status(200).json(results);
+    });
+});
+
+app.post('/reviews', (req, res) => {
+    const { userId, productId, rating, comment } = req.body;
+
+    if (!userId || !productId || !rating || !comment) {
+        return res.status(400).json({ message: 'All fields are required.' });
+    }
+
+    // Check if the product exists
+    const productCheckQuery = 'SELECT * FROM products WHERE Product_ID = ?';
+    db.query(productCheckQuery, [productId], (err, results) => {
+        if (err) {
+            console.error('Error checking product:', err);
+            return res.status(500).json({ message: 'Error checking product' });
+        }
+
+        if (results.length === 0) {
+            return res.status(400).json({ message: 'Invalid Product ID' });
+        }
+
+        // Insert the review
+        const insertQuery = `
+            INSERT INTO reviews (User_ID, Product_ID, Rating, Comment, Review_Date)
+            VALUES (?, ?, ?, ?, CURDATE())
+        `;
+        db.query(insertQuery, [userId, productId, rating, comment], (err, result) => {
+            if (err) {
+                console.error('Error adding review:', err);
+                return res.status(500).json({ message: 'Error adding review' });
+            }
+            res.status(201).json({ message: 'Review added successfully' });
+        });
+    });
+});
+

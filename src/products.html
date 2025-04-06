@@ -11,15 +11,15 @@
         <h1>Products</h1>
     </header>
     <main>
+        <nav class="navbar">
+            <a href="home.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="yreviews.html">Your Reviews</a>
+            <a href="login.html">Logout</a>
+        </nav>
         <!-- Section to display products -->
-        <section id="product-list">
-            <h2>Available Products</h2>
-            <nav class="navbar">
-                <a href="home.html">Home</a>
-                <a href="products.html">Products</a>
-                <a href="#">Cart</a>
-                <a href="login.html">Logout</a>
-            </nav>
+        <section id="product-list" class="home-container">
+            <h2 class="header">Available Products</h2>
             <table class="container">
                 <thead>
                     <tr>
@@ -37,6 +37,34 @@
                 <tbody id="products"></tbody>
             </table>
         </section>
+
+        <!-- Form to add a new product -->
+        <section id="add-product" class="container" style="display: none;">
+            <h2>Add a New Product</h2>
+            <form id="productForm">
+                <input type="text" id="productName" placeholder="Product Name" required>
+                <textarea id="productDescription" placeholder="Product Description"></textarea>
+                <input type="number" id="productPrice" placeholder="Price" required>
+                <input type="number" id="productStock" placeholder="Stock" required>
+                <input type="text" id="productCategory" placeholder="Category" required>
+                <input type="text" id="productBrand" placeholder="Brand" required>
+                <input type="text" id="productSKU" placeholder="SKU Code" required>
+                <input type="number" id="productDiscount" placeholder="Discount (%)" required>
+                <button type="submit">Add Product</button>
+            </form>
+        </section>
+
+        <!-- Floating Add Product Button -->
+        <button id="toggleFormButton" class="floating-button">Add Product</button>
+
+        <!-- Modal to display reviews -->
+        <div id="reviewsModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span id="closeModal" class="close">&times;</span>
+                <h2>Product Reviews</h2>
+                <ul id="reviewsList"></ul>
+            </div>
+        </div>
     </main>
     <script src="scripts.js"></script>
 </body>

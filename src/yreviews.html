@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Your Reviews - Online Retail Application</title>
+</head>
+<body>
+    <header class="header">
+        <h1>Your Reviews</h1>
+    </header>
+    <nav class="navbar">
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="yreviews.html">Your Reviews</a>
+        <a href="login.html">Logout</a>
+    </nav>
+    <main>
+        <!-- Section to display user reviews -->
+        <section id="user-reviews" class="home-container">
+            <h2>Your Reviews</h2>
+            <ul id="reviewsList"></ul>
+        </section>
+
+        <!-- Form to add a new review -->
+        <section id="add-review" class="container" style="display: none;">
+            <h2>Add a Review</h2>
+            <form id="reviewForm">
+                <input type="number" id="productId" placeholder="Product ID" required>
+                <input type="number" id="rating" placeholder="Rating (1-5)" required>
+                <textarea id="comment" placeholder="Write your review here..." required></textarea>
+                <button type="submit">Submit Review</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Floating Add Review Button -->
+    <button id="addReviewButton" class="floating-button">Add Review</button>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+
